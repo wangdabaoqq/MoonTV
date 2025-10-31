@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
+import Script from "next/script";
 
 import './globals.css';
 import 'sweetalert2/dist/sweetalert2.min.css';
@@ -67,7 +68,14 @@ export default async function RootLayout({
             __html: `window.RUNTIME_CONFIG = ${JSON.stringify(runtimeConfig)};`,
           }}
         />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6072137830510180" crossorigin="anonymous"></script>
+        {/* ✅ 正确加载 Google AdSense */}
+        <Script
+          async
+          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6072137830510180'
+          crossOrigin='anonymous'
+          strategy='afterInteractive'
+        />
+
       </head>
       <body
         className={`${inter.className} min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-200`}
